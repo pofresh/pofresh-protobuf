@@ -1,18 +1,14 @@
 {
   "onMove": {
-    "entityId": 14,
-    "path": [
-      {
-        "x": 128,
-        "y": 796
-      },
-      {
-        "x": 677,
-        "y": 895
-      }
-    ],
-    "speed": 160
+    "required uInt32 entityId": 1,
+    "message Path": {
+      "required double x": 1,
+      "required double y": 2
+    },
+    "repeated Path path": 2,
+    "required float speed": 3
   },
+
   "area.playerHandler.enterScene": {
     "entities": {
       "item": [

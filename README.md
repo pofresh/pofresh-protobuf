@@ -85,8 +85,8 @@ On average, the encode/decode speed of Server version is 60% faster than client 
 ### Example message
 
   ```
-  var key = 'onMove';
-  var msg = {
+  const key = 'onMove';
+  const msg = {
     entityId : 14,
     path : [{x : 128,y : 796},{x : 677,y : 895}],
     speed : 160
@@ -98,17 +98,17 @@ On average, the encode/decode speed of Server version is 60% faster than client 
 
   ```
   //Require proto buf module
-  var protobuf = require('protobuf');
+  const protobuf = require('protobuf');
 
   //Set encode protos and decode protos
-  var protos = protobuf.parse(require('./protos.json'));
+  const protos = protobuf.parse(require('./protos.json'));
   protobuf.init({encoderProtos:protos, decoderProtos:protos});
 
   //Encode msg to binary Buffer
-  var buffer = protobuf.encode(key, msg);
+  const buffer = protobuf.encode(key, msg);
 
   //Decode a msg from binary buffer
-  var decodeMsg = protobuf.decode(key, buffer);
+  const decodeMsg = protobuf.decode(key, buffer);
 
   ```
 At server side, the encode result will be a Buffer.
@@ -119,19 +119,19 @@ To use the protbuf as browser, you need to include the /client/protobuf.js in yo
 
   ```
   //Require proto buf
-  var protobuf = require('protobuf');
+  const protobuf = require('protobuf');
 
   //Get parsed protos from server
-  var protos = getProtos();
+  const protos = getProtos();
 
   //Init protobuf
   protobuf.init({encoderProtos:protos, decoderProtos:protos});
 
   //Encode msg to binary Buffer
-  var buffer = protobuf.encode(key, msg);
+  const buffer = protobuf.encode(key, msg);
 
   //Decode a msg from binary buffer
-  var decodeMsg = protobuf.decode(key, buffer);
+  const decodeMsg = protobuf.decode(key, buffer);
 
   ```
 

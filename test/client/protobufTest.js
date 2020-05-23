@@ -1,38 +1,38 @@
-var protobuf = require('../../lib/client/protobuf');
-var protobufServer = require('../../lib/protobuf');
-var encoder = protobuf.encoder;
-var decoder = protobuf.decoder;
-var codec = protobuf.codec;
-var parser = require('../../lib/parser');
-var util = require('../../lib/util');
-var should = require('should');
-var tc = require('../testMsg');
+let protobuf = require('../../lib/client/protobuf');
+let protobufServer = require('../../lib/protobuf');
+let encoder = protobuf.encoder;
+let decoder = protobuf.decoder;
+let codec = protobuf.codec;
+let parser = require('../../lib/parser');
+let util = require('../../lib/util');
+let should = require('should');
+let tc = require('../testMsg');
 
-describe('msgEncoderTest', function(){
+describe('msgEncoderTest', function () {
 
-	var protos = parser.parse(require('../example.json'));
+    let protos = parser.parse(require('../example.json'));
 
-	protobuf.init({encoderProtos:protos, decoderProtos:protos});
-	protobufServer.init({encoderProtos:protos, decoderProtos:protos});
+    protobuf.init({encoderProtos: protos, decoderProtos: protos});
+    protobufServer.init({encoderProtos: protos, decoderProtos: protos});
 
-	describe('protobufTest', function(){
-		for(var route in tc){
-			var msg = tc[route];
-			var buffer = protobuf.encode(route, msg);
+    describe('protobufTest', function () {
+        for (let route in tc) {
+            let msg = tc[route];
+            let buffer = protobuf.encode(route, msg);
 
-			var decodeMsg = protobuf.decode(route, buffer);
+            let decodeMsg = protobuf.decode(route, buffer);
 
-			util.equal(msg, decodeMsg).should.equal(true);
-		}
-	});
+            util.equal(msg, decodeMsg).should.equal(true);
+        }
+    });
 });
 
-function toBuffer(arr){
-	var buffer = new Buffer(arr.length);
+function toBuffer(arr) {
+    let buffer = Buffer.alloc(arr.length);
 
-	for(var i = 0; i < arr.length; i++){
-		buffer.writeUInt8(arr[i], i);
-	}
+    for (let i = 0; i < arr.length; i++) {
+        buffer.writeUInt8(arr[i], i);
+    }
 
-	return buffer;
+    return buffer;
 }

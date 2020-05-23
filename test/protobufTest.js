@@ -1,27 +1,19 @@
-var protobuf = require('../lib/protobuf');
-var util = require('../lib/util');
-var should = require('should');
-var tc = require('./testMsg');
+const should = require('should');
+const protobuf = require('../lib/protobuf');
+const util = require('../lib/util');
+const tc = require('./testMsg');
 
+describe('msgEncoderTest', function () {
+    let protos = protobuf.parse(require('./example.json'));
+    protobuf.init({encoderProtos: protos, decoderProtos: protos});
 
-describe('msgEncoderTest', function(){
-	var protos = protobuf.parse(require('./example.json'));
-	protobuf.init({encoderProtos:protos, decoderProtos:protos});
-
-	describe('encodeTest', function(){
-		for(var route in tc){
-			var msg = tc[route];
-			var buffer = protobuf.encode(route, msg);
-
-			console.log(msg);
-			console.log(buffer.length);
-			console.log(buffer)
-
-			var decodeMsg = protobuf.decode(route, buffer);
-
-			console.log(decodeMsg);
-
-			util.equal(msg, decodeMsg).should.equal(true);
-		}
-	});
+    it('encodeTest', function (done) {
+        for (let route in tc) {
+            let msg = tc[route];
+            let buffer = protobuf.encode(route, msg);
+            let decodeMsg = protobuf.decode(route, buffer);
+            util.equal(msg, decodeMsg).should.equal(true);
+        }
+        done();
+    });
 });
