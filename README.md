@@ -1,5 +1,5 @@
 # Pofresh-protobuf
-  Protobuf protocol is a high efficient binary protocol for data encode, this module implement the protobuf protocol, and used in [pofresh](https://github.com/NetEase/pofresh) for data transfer.
+  Protobuf protocol is a high efficient binary protocol for data encode, this module implement the protobuf protocol, and used in [pofresh](https://github.com/pofresh/pofresh) for data transfer.
 Of course, pofresh-protobuf can also be used independently in other projects.
 ## Architecture
 Unlike the google protobuf, we provide a universal encoder and decoder in pofresh-protobuf. We use protos file as meta data to encode/decode messages, so you do not need to add any code to your project, instead , what you need is to add a protos.json (or two for different encoder and decoder messages) files to define the message need to encode by protobuf.The architecture of pofresh-protobuf is as follow:
